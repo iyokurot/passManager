@@ -21,3 +21,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('login', ['uses' => 'AuthController@login']);
 
 Route::post('code/regist', ['uses' => 'CodeController@registCode']);
+
+Route::get('code/getall', ['uses' => 'CodeController@getAllCode']);
+
+Route::post('code/get', ['uses' => 'CodeController@getCode']);
