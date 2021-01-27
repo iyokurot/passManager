@@ -14,14 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
-    return $request->user();
-});
-
-Route::post('login', ['uses' => 'AuthController@login']);
-
-Route::post('code/regist', ['uses' => 'CodeController@registCode']);
-
-Route::get('code/getall', ['uses' => 'CodeController@getAllCode']);
-
-Route::post('code/get', ['uses' => 'CodeController@getCode']);
+//const AUTH_API_LIST = [
+//    'login'                         => 'AuthController@login',
+//    'code/get'                      => 'CodeController@getCode',
+//    'code/getall'                   => 'CodeController@getAllCode',
+//    'code/regist'                   => 'CodeController@registCode',
+//];
+//
+//Route::middleware('auth:api')->get('/user', function (Request $request) {
+//    return $request->user();
+//});
+//
+//// Route::post('login', ['uses' => 'AuthController@login']);
+//
+//// Route::post('code/regist', ['uses' => 'CodeController@registCode']);
+//
+//// Route::get('code/getall', ['uses' => 'CodeController@getAllCode', 'middleware' => 'iplimit']);
+//
+//// Route::post('code/get', ['uses' => 'CodeController@getCode']);
+//
+//foreach (AUTH_API_LIST as $path => $method) {
+//    Route::post($path, ['uses' => $method, 'middleware' => ['requestLog']]);
+//    Route::get($path, ['uses' => $method, 'middleware' => ['requestLog']]);
+//}

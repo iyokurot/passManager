@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ModelCode;
+use App\Systems\Response;
 use Illuminate\Http\Request;
 use App\UCodes;
 
@@ -13,23 +15,16 @@ class CodeController extends Controller
     public function registCode(Request $request)
     {
         // service_name, id_name, password, mail, detail
-        $service_name = $request->service_name;
-        $id_name = $request->id_name;
-        $password = hash('sha256', $request->password);
-        $mail = $request->mail;
-        $detail = $request->detail;
+        $service_name = $request->input('service_name','');
+        $id_name = $request->input('id_name','');
+        $password = $request->input('password','');
+        $mail = $request->input('mail','');
+        $detail = $request->input('detail','');
 
-        $u_code = new UCodes();
-        $u_code->fill([
-            'service_name' => $service_name,
-            'id_name' => $id_name,
-            'password' => $password,
-            'mail' => $mail,
-            'detail' => $detail
-        ]);
-        $create = $u_code->save();
+        // Codeの登録
+        $result = ModelCode::registCode($service_name,$id_name,$password,$mail,$detail);
 
-        return response()->json($create, 200);
+        return response()->json($result, 200);
     }
 
 
@@ -38,15 +33,17 @@ class CodeController extends Controller
      */
     public function getAllCode(Request $request)
     {
-        $u_code = new UCodes();
-        $codes = $u_code
-        ->select(['service_name','id_name'])
-        ->orderBy('service_name')
-        ->get();
-        return response()->json($codes, 200);
+        $codes = ModelCode::getAll();
+        $response['code_list'] = $codes;
+        return Response::getResponse($response);
     }
 
 
+    /**
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function getCode(Request $request)
     {
         $code_name = $request->service_name;

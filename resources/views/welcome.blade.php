@@ -64,7 +64,7 @@
         </style>
     </head>
     <body>
-            <div id="example"></div>
+            <div id="reactapp"></div>
             <script src="{{mix('js/app.js')}}" ></script>
 
         <!-- <div class="flex-center position-ref full-height">
