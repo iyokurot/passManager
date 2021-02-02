@@ -1,6 +1,7 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useState, useContext} from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
+import {postServer} from "./Utils/Connection";
 
 /**
  * タイトル画面
@@ -16,27 +17,20 @@ function Title(props){
         // passwordのnullチェック
         let request = {pass:password};
         setStatusLog('');
-        fetch('/login',{
-            method: 'POST',
-            body: JSON.stringify(request),
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            mode: 'cors',
-        })
-            .then(res => res.json())
-            .then(res => {
-                if(res.action != null){
-                    let response = res.action;
-                    let isLogin = response.is_login!=null ? response.is_login:false;
-                    let loginStatus = isLogin ? 'ログインしました':'ログインに失敗しました'
-                    setStatusLog(loginStatus);
-                    if(isLogin){
-                        // Homeへ遷移
-                        props.history.push('/Home');
-                    }
+        postServer('/login',request,(res)=>{
+            if(res.action != null){
+                let response = res.action;
+                let isLogin = response.is_login!=null ? response.is_login:false;
+                let loginStatus = isLogin ? 'ログインしました':'ログインに失敗しました'
+                setStatusLog(loginStatus);
+                if(isLogin){
+                    // Homeへ遷移
+                    props.history.push('/Home');
                 }
-            })
+            }
+        },(error)=>{
+            console.log(error);
+        })
     }
 
     return (

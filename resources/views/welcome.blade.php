@@ -64,6 +64,7 @@
         </style>
     </head>
     <body>
+            <meta name="csrf-token" content="{{ csrf_token() }}">
             <div id="reactapp"></div>
             <script src="{{mix('js/app.js')}}" ></script>
 

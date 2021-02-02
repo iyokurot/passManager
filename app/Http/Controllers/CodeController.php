@@ -15,16 +15,16 @@ class CodeController extends Controller
     public function registCode(Request $request)
     {
         // service_name, id_name, password, mail, detail
-        $service_name = $request->input('service_name','');
-        $id_name = $request->input('id_name','');
-        $password = $request->input('password','');
-        $mail = $request->input('mail','');
-        $detail = $request->input('detail','');
+        $service_name = (string)$request->input('service_name','');
+        $id_name = (string)$request->input('id_name','');
+        $password = (string)$request->input('password','');
+        $mail = (string)$request->input('mail','');
+        $detail = (string)$request->input('detail','');
 
         // Codeの登録
         $result = ModelCode::registCode($service_name,$id_name,$password,$mail,$detail);
-
-        return response()->json($result, 200);
+        $response['is_clear'] = $result;
+        return Response::getResponse($response);
     }
 
 
@@ -52,5 +52,25 @@ class CodeController extends Controller
         ->where(['service_name'=> $code_name])
         ->first();
         return response()->json($code, 200);
+    }
+
+    /**
+     * CODE情報更新
+     * * @param Request $request
+     * @return array
+     */
+    public static function update(Request $request)
+    {
+        $response = [];
+        $codeID = (int)$request->input('code_id',0);
+        $serviceName = (string)$request->input('service_name','');
+        $idName = (string)$request->input('id_name', '');
+        $password = (string)$request->input('password', '');
+        $mail = (string)$request->input('mail', '');
+        $detail = (string)$request->input('detail','');
+
+        $result = ModelCode::updateCode($codeID, $serviceName, $idName, $password, $mail, $detail);
+        $response['isClear'] = $result;
+        return Response::getResponse($response);
     }
 }

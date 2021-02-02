@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import {postServer} from "./Utils/Connection";
 
 /**
  * 登録画面
@@ -22,20 +23,23 @@ function Regist(props) {
                 mail:mail,
                 detail:detail
             };
-        fetch("/code/regist",{
-            method: 'POST',
-            body: JSON.stringify(request),
-            headers: {
-                'Content-Type': 'application/json',
+        postServer('/code/regist',request,
+            (res)=>{
+            if(res.action != null){
+                setStatusLog(serviceName +"を登録しました")
+                setServiceName('')
+                setIdName('')
+                setMail('')
+                setPassword('')
+                setDetail('')
+            }else if(res.error != null){
+                // 吉のエラー
+                setStatusLog('エラーが発生しました。コード['+res.error.code + ']('+res.error.message+')')
+            }
             },
-            mode: 'cors',
-        })
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
-                if(res.action != null){
-                }
-            });
+            (error) => {
+            setStatusLog('エラーがはっせいしました')
+            })
     }
     return (
         <div>

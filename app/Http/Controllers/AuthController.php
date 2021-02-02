@@ -35,6 +35,6 @@ class AuthController extends Controller
     public static function logout(Request $request)
     {
         $request->session()->flush();
-        return Response::getResponse(true);
+        return Response::getResponse(['is_logout'=>true]);
     }
 }

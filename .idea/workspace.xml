@@ -2,20 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="38ffa09d-ef29-4776-bd18-4ac2faf4a83a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/app/Exceptions/Handler.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Exceptions/Handler.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Defs/DefErrorCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Defs/DefErrorCode.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Kernel.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Kernel.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/UUsers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/UUsers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/logging.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/logging.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2020_07_12_163906_u_codes.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RequestLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RequestLog.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Models/ModelCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelCode.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Example.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Example.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Home.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Regist.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Regist.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Title.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Top.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Top.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -173,11 +171,38 @@
       <workItem from="1611765819447" duration="1795000" />
       <workItem from="1611767625935" duration="1796000" />
       <workItem from="1611769431850" duration="1797000" />
-      <workItem from="1611771242103" duration="1065000" />
+      <workItem from="1611771242103" duration="1554000" />
+      <workItem from="1611864830892" duration="1885000" />
+      <workItem from="1611866727753" duration="1270000" />
+      <workItem from="1611951745416" duration="1791000" />
+      <workItem from="1611953547130" duration="1800000" />
+      <workItem from="1611961545653" duration="2000" />
+      <workItem from="1612018077128" duration="1562000" />
+      <workItem from="1612019878126" duration="1795000" />
+      <workItem from="1612021709058" duration="2032000" />
+      <workItem from="1612023751668" duration="1880000" />
+      <workItem from="1612025644484" duration="1796000" />
+      <workItem from="1612027451943" duration="6230000" />
+      <workItem from="1612119213218" duration="1673000" />
+      <workItem from="1612121015334" duration="1796000" />
+      <workItem from="1612122822459" duration="1392000" />
+      <workItem from="1612205882351" duration="1032000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>

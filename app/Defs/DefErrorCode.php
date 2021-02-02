@@ -13,6 +13,9 @@ class DefErrorCode
     // 110000~  Common系エラー
     const CODE_ERROR_DEFAULT                        = 0;    // デフォルトエラー
 
+    const CODE_CODE_ID_INVALID                      = 1101; // CODEIDが不整地
+    const CODE_CODE_SERVICE_NAME_IS_EMPTY           = 1102; // サービス名が空
+
 
     const CODE_DATABASE_TRANSACTION_NOT_BEGIN       = 100001; // トランザクションを開始していない
 

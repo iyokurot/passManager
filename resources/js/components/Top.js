@@ -9,7 +9,6 @@ import Regist from "./Regist";
  * ルーティング設定
  */
 function Top() {
-    // const token = $('meta[name="csrf-token"]').attr("content");
     return (
         <Router>
             <div>

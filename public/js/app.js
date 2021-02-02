@@ -69868,6 +69868,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Utils_Connection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Utils/Connection */ "./resources/js/components/Utils/Connection.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -69882,15 +69883,36 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 /**
  * ホーム画面
  */
 
 function Home(props) {
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(0),
       _useState2 = _slicedToArray(_useState, 2),
-      passList = _useState2[0],
-      setPassList = _useState2[1];
+      reload = _useState2[0],
+      setReload = _useState2[1];
+
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(''),
+      _useState4 = _slicedToArray(_useState3, 2),
+      statusLog = _useState4[0],
+      setStatusLog = _useState4[1];
+
+  var _useState5 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])([]),
+      _useState6 = _slicedToArray(_useState5, 2),
+      passList = _useState6[0],
+      setPassList = _useState6[1];
+
+  var _useState7 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])({}),
+      _useState8 = _slicedToArray(_useState7, 2),
+      selectCode = _useState8[0],
+      setSelectCode = _useState8[1];
+
+  var _useState9 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState10 = _slicedToArray(_useState9, 2),
+      isOpenModal = _useState10[0],
+      setIsOpenModal = _useState10[1];
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     // pass の全取得
@@ -69906,8 +69928,10 @@ function Home(props) {
       } else {
         props.history.push('/');
       }
+    })["catch"](function (error) {
+      props.history.push('/');
     });
-  }, []);
+  }, [reload]);
   /**
    * ログアウト
    */
@@ -69919,16 +69943,105 @@ function Home(props) {
       props.history.push('/');
     });
   };
+  /**
+   * CODE編集
+   * @param index
+   */
+
+
+  var onClickCode = function onClickCode(index) {
+    var tmpArray = Object.assign({}, passList[index]);
+    setSelectCode(tmpArray);
+    setIsOpenModal(true);
+  };
+  /**
+   * CODE変更
+   * @param key
+   * @param value
+   */
+
+
+  var onChangeCode = function onChangeCode(key, value) {
+    var tmpCode = Object.assign({}, selectCode);
+    tmpCode[key] = value;
+    setSelectCode(tmpCode);
+  };
+
+  var closeOrSaveModal = function closeOrSaveModal(isSave) {
+    if (isSave) {
+      // Codeの更新処理
+      var body = {
+        code_id: selectCode.id,
+        service_name: selectCode.service_name,
+        id_name: selectCode.id_name,
+        password: selectCode.password,
+        mail: selectCode.mail,
+        detail: selectCode.detail
+      };
+      Object(_Utils_Connection__WEBPACK_IMPORTED_MODULE_2__["postServer"])('code/update', body, function (res) {
+        //更新
+        setStatusLog(selectCode.service_name + 'の情報を更新しました');
+        setReload(reload + 1);
+      }, function (error) {
+        // error
+        setStatusLog('エラーが発生しました');
+      });
+    }
+
+    setIsOpenModal(false);
+  };
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Home"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/Regist"
   }, "Regist"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: onClickLogout
-  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30B5\u30FC\u30D3\u30B9\u540D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30E1\u30FC\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30D1\u30B9"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, passList.map(function (pass, index) {
+  }, "\u30ED\u30B0\u30A2\u30A6\u30C8"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, statusLog), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("table", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("thead", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30B5\u30FC\u30D3\u30B9\u540D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30E1\u30FC\u30EB"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u30D1\u30B9"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("th", null, "\u8A73\u7D30"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tbody", null, passList.map(function (pass, index) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("tr", {
       key: index
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.service_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.id_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.mail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.password));
-  })))));
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.service_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.id_name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.mail), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, pass.password), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("td", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick() {
+        return onClickCode(index);
+      }
+    }, "\u8A73\u7D30")));
+  }))), isOpenModal ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "\u30B5\u30FC\u30D3\u30B9\u540D",
+    value: selectCode.service_name,
+    onChange: function onChange(e) {
+      return onChangeCode('service_name', e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "ID",
+    value: selectCode.id_name,
+    onChange: function onChange(e) {
+      return onChangeCode('id_name', e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "mail",
+    value: selectCode.mail,
+    onChange: function onChange(e) {
+      return onChangeCode('mail', e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+    placeholder: "password",
+    value: selectCode.password,
+    onChange: function onChange(e) {
+      return onChangeCode('password', e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+    placeholder: "detail",
+    value: selectCode.detail,
+    onChange: function onChange(e) {
+      return onChangeCode('detail', e.target.value);
+    }
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return closeOrSaveModal(false);
+    }
+  }, "\u9589\u3058\u308B"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return closeOrSaveModal(true);
+    }
+  }, "\u4FDD\u5B58"))) : ''));
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (Home);
@@ -69947,6 +70060,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Utils_Connection__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Utils/Connection */ "./resources/js/components/Utils/Connection.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -69958,6 +70072,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -70005,19 +70120,20 @@ function Regist(props) {
       mail: mail,
       detail: detail
     };
-    fetch("/code/regist", {
-      method: 'POST',
-      body: JSON.stringify(request),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      mode: 'cors'
-    }).then(function (res) {
-      return res.json();
-    }).then(function (res) {
-      console.log(res);
-
-      if (res.action != null) {}
+    Object(_Utils_Connection__WEBPACK_IMPORTED_MODULE_2__["postServer"])('/code/regist', request, function (res) {
+      if (res.action != null) {
+        setStatusLog(serviceName + "を登録しました");
+        setServiceName('');
+        setIdName('');
+        setMail('');
+        setPassword('');
+        setDetail('');
+      } else if (res.error != null) {
+        // 吉のエラー
+        setStatusLog('エラーが発生しました。コード[' + res.error.code + '](' + res.error.message + ')');
+      }
+    }, function (error) {
+      setStatusLog('エラーがはっせいしました');
     });
   };
 
@@ -70076,6 +70192,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _Utils_Connection__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Utils/Connection */ "./resources/js/components/Utils/Connection.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -70087,6 +70204,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -70116,16 +70234,7 @@ function Title(props) {
       pass: password
     };
     setStatusLog('');
-    fetch('/login', {
-      method: 'POST',
-      body: JSON.stringify(request),
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      mode: 'cors'
-    }).then(function (res) {
-      return res.json();
-    }).then(function (res) {
+    Object(_Utils_Connection__WEBPACK_IMPORTED_MODULE_3__["postServer"])('/login', request, function (res) {
       if (res.action != null) {
         var response = res.action;
         var isLogin = response.is_login != null ? response.is_login : false;
@@ -70137,6 +70246,8 @@ function Title(props) {
           props.history.push('/Home');
         }
       }
+    }, function (error) {
+      console.log(error);
     });
   };
 
@@ -70187,7 +70298,6 @@ __webpack_require__.r(__webpack_exports__);
  */
 
 function Top() {
-  // const token = $('meta[name="csrf-token"]').attr("content");
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["BrowserRouter"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_2__["Route"], {
     exact: true,
     path: "/",
@@ -70211,6 +70321,42 @@ function Top() {
 
 if (document.getElementById("reactapp")) {
   react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Top, null), document.getElementById("reactapp"));
+}
+
+/***/ }),
+
+/***/ "./resources/js/components/Utils/Connection.js":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/Utils/Connection.js ***!
+  \*****************************************************/
+/*! exports provided: postServer, testCSRF */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "postServer", function() { return postServer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "testCSRF", function() { return testCSRF; });
+function postServer(path, body, success, fail) {
+  var token = $('meta[name="csrf-token"]').attr("content");
+  fetch(path, {
+    method: 'POST',
+    body: JSON.stringify(body),
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-TOKEN': token
+    }
+  }).then(function (res) {
+    return res.json();
+  }).then(function (res) {
+    console.log(res);
+    success(res);
+  })["catch"](function (error) {
+    fail(error);
+  });
+}
+function testCSRF() {
+  var token = $('meta[name="csrf-token"]').attr("content");
+  console.log(token);
 }
 
 /***/ }),

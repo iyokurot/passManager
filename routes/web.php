@@ -21,6 +21,7 @@ const AUTH_API_LIST = [
     'code/get'                      => 'CodeController@getCode',
     'code/getall'                   => 'CodeController@getAllCode',
     'code/regist'                   => 'CodeController@registCode',
+    'code/update'                   => 'CodeController@update',
 ];
 //
 //Route::middleware('auth:api')->get('/user', function (Request $request) {

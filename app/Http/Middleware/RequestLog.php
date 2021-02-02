@@ -17,6 +17,19 @@ class RequestLog
     public function handle($request, Closure $next)
     {
         Log::info('Request ['.$request->url().']');
+        // inputLog
+        $logstr = 'input:{';
+        if(!empty($request->input())){
+            $requestArray = $request->input();
+            $requestParams = [];
+            foreach ($requestArray as $key=>$param){
+               $requestParams[] = '"'.$key.'":"'.$param.'"';
+            }
+            $logstr = $logstr.implode(',',$requestParams).'}';
+        }else{
+            $logstr = $logstr.'}';
+        }
+        Log::info($logstr);
         return $next($request);
     }
 }
