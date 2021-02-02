@@ -3,17 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="38ffa09d-ef29-4776-bd18-4ac2faf4a83a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Defs/DefErrorCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Defs/DefErrorCode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/AuthController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CodeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CodeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Middleware/RequestLog.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Middleware/RequestLog.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/ModelCode.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/ModelCode.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Home.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Home.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Regist.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Regist.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Title.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Title.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/components/Top.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Top.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -187,6 +176,7 @@
       <workItem from="1612121015334" duration="1796000" />
       <workItem from="1612122822459" duration="1392000" />
       <workItem from="1612205882351" duration="1032000" />
+      <workItem from="1612283432343" duration="797000" />
     </task>
     <servers />
   </component>

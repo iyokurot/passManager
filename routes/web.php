@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Middleware\RequestLog;
+use App\Http\Middleware\SessionAuth;
+use App\Http\Middleware\IpLimit;
 
 /*
 |--------------------------------------------------------------------------
