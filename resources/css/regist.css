@@ -1,0 +1,12 @@
+.regist-area{
+    display: inline-block;
+    text-align: center;
+    box-shadow: 0px 0px 15px rgba(0,0,0,0.4);
+    margin: 10px 0px;
+    padding: 5px;
+}
+.input-area{
+    width: 200px;
+    margin: 10px 10px 0px 10px;
+    font-size: 18px;
+}

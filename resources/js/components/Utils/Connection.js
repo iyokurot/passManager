@@ -1,5 +1,6 @@
-export function postServer(path, body, success, fail){
+export function postServer(path, body, success, fail, setLoading){
     const token = $('meta[name="csrf-token"]').attr("content");
+    setLoading(true);
     fetch(path,{
         method: 'POST',
         body: JSON.stringify(body),
@@ -12,9 +13,11 @@ export function postServer(path, body, success, fail){
         .then(res => {
             console.log(res);
             success(res);
+            setLoading(false);
         })
         .catch(error => {
             fail(error);
+            setLoading(false);
         });
 }
 

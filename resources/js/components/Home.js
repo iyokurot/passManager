@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import {postServer} from "./Utils/Connection";
+import Loading from "./Utils/Loading";
+import './../../css/home.css'
 
 /**
  * ホーム画面
@@ -11,24 +13,25 @@ function Home(props) {
     const [passList, setPassList] = useState([]);
     const [selectCode, setSelectCode] = useState({});
     const [isOpenModal, setIsOpenModal] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
         // pass の全取得
-        fetch("/code/getall")
-            .then(res => res.json())
-            .then(res => {
-                console.log(res);
+        postServer('code/getall',null,
+            (res) => {
                 if(res.action != null){
                     let passList = res.action.code_list;
                     setPassList(passList);
+                    setIsLoading(false);
                 }else if(res.error != null){
-                    //
+                    setStatusLog('エラーが発生しました')
                 }else{
                     props.history.push('/');
                 }
-            })
-            .catch(error => {
+            },
+            (error) => {
                 props.history.push('/');
-            });
+            },
+            setIsLoading)
     }, [reload]);
 
     /**
@@ -40,6 +43,15 @@ function Home(props) {
             .then(res => {
                 props.history.push('/');
             })
+        postServer('logout',null,
+            (res) => {
+                setStatusLog('ログアウトしました')
+                props.history.push('/');
+            },
+            (error) => {
+            setStatusLog('エラーが発生しました')
+            },
+            setIsLoading)
     }
 
     /**
@@ -63,6 +75,10 @@ function Home(props) {
         setSelectCode(tmpCode);
     }
 
+    const onClickRegistPage = ()=>{
+        props.history.push('/Regist');
+    }
+
     const closeOrSaveModal = (isSave) => {
         if(isSave){
             // Codeの更新処理
@@ -83,17 +99,23 @@ function Home(props) {
                 (error) => {
                 // error
                     setStatusLog('エラーが発生しました');
-                })
+                },
+                setIsLoading)
         }
         setIsOpenModal(false);
     }
     return (
-        <div>
+        <div className="container">
+            <Loading isLoading={isLoading}/>
             <h1>Home</h1>
-            <Link to="/Regist">Regist</Link>
+            {/*<Link to="/Regist">Regist</Link>*/}
+            <div>
+            <button onClick={onClickRegistPage}>Regist</button>
             <button onClick={onClickLogout}>ログアウト</button>
+            </div>
             <div>{statusLog}</div>
             <div>
+                <div id="table-area">
                 <table>
                     <thead>
                     <tr>
@@ -116,25 +138,25 @@ function Home(props) {
             ))}
                     </tbody>
                 </table>
-
-                {isOpenModal ?
-                    <div>
-                        {/*<div>{selectCode.service_name}</div>*/}
-                        {/*<div>{selectCode.id_name}</div>*/}
-                        {/*<div>{selectCode.mail}</div>*/}
-                        {/*<div>{selectCode.password}</div>*/}
-                        <div><input placeholder='サービス名' value={selectCode.service_name} onChange={e => onChangeCode('service_name',e.target.value)}/></div>
-                        <div><input placeholder='ID' value={selectCode.id_name} onChange={e => onChangeCode('id_name',e.target.value)}/></div>
-                        <div><input placeholder='mail' value={selectCode.mail} onChange={e => onChangeCode('mail',e.target.value)}/></div>
-                        <div><input placeholder='password' value={selectCode.password} onChange={e => onChangeCode('password',e.target.value)}/></div>
-                        <div><textarea placeholder='detail' value={selectCode.detail} onChange={e => onChangeCode('detail',e.target.value)}/></div>
-                        <div>
-                        <button onClick={() => closeOrSaveModal(false)}>閉じる</button>
-                        <button onClick={() => closeOrSaveModal(true)}>保存</button>
-                        </div>
-                    </div>:''}
+                </div>
 
             </div>
+            {isOpenModal ?
+                <div className="regist-area" id="detail-area">
+                    {/*<div>{selectCode.service_name}</div>*/}
+                    {/*<div>{selectCode.id_name}</div>*/}
+                    {/*<div>{selectCode.mail}</div>*/}
+                    {/*<div>{selectCode.password}</div>*/}
+                    <div className="input-area"><input placeholder='サービス名' value={selectCode.service_name} onChange={e => onChangeCode('service_name',e.target.value)}/></div>
+                    <div className="input-area"><input placeholder='ID' value={selectCode.id_name} onChange={e => onChangeCode('id_name',e.target.value)}/></div>
+                    <div className="input-area"><input placeholder='mail' value={selectCode.mail} onChange={e => onChangeCode('mail',e.target.value)}/></div>
+                    <div className="input-area"><input placeholder='password' value={selectCode.password} onChange={e => onChangeCode('password',e.target.value)}/></div>
+                    <div className="input-area"><textarea placeholder='detail' value={selectCode.detail} onChange={e => onChangeCode('detail',e.target.value)}/></div>
+                    <div>
+                        <button onClick={() => closeOrSaveModal(false)}>閉じる</button>
+                        <button onClick={() => closeOrSaveModal(true)}>保存</button>
+                    </div>
+                </div>:''}
         </div>
     );
 }

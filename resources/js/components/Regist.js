@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import {postServer} from "./Utils/Connection";
+import Loading from "./Utils/Loading";
+import './../../css/regist.css'
 
 /**
  * 登録画面
@@ -12,6 +14,7 @@ function Regist(props) {
     const [password, setPassword] = useState('');
     const [detail, setDetail] = useState('');
     const [statusLog, setStatusLog] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     const onClickRegistCode = () =>{
         // 空白チェック
@@ -39,19 +42,42 @@ function Regist(props) {
             },
             (error) => {
             setStatusLog('エラーがはっせいしました')
-            })
+            },
+            setIsLoading)
+    }
+
+    /**
+     * ホームに戻るボタン
+     */
+    const onClickBackHome = () => {
+        props.history.push('/Home')
     }
     return (
-        <div>
+        <div className="container">
+            <Loading isLoading={isLoading}/>
             <h1>Regist</h1>
-            <Link to="/Home">Back</Link>
             <div>
-                <input placeholder='サービス名' value={serviceName} onChange={e => setServiceName(e.target.value)}/>
-                <input placeholder='ID' value={idName} onChange={e => setIdName(e.target.value)}/>
-                <input placeholder='mail' value={mail} onChange={e => setMail(e.target.value)}/>
-                <input placeholder='password' value={password} onChange={e=>setPassword(e.target.value)}/>
-                <textarea placeholder='detail' value={detail} onChange={e=>setDetail(e.target.value)}/>
-                <button onClick={onClickRegistCode}>登録</button>
+                <button onClick={onClickBackHome}>Back</button>
+            </div>
+            <div className="regist-area">
+                <div>
+                    <input className="input-area" placeholder='サービス名' value={serviceName} onChange={e => setServiceName(e.target.value)}/>
+                </div>
+                <div>
+                    <input className="input-area" placeholder='ID' value={idName} onChange={e => setIdName(e.target.value)}/>
+                </div>
+                <div>
+                    <input className="input-area" placeholder='mail' value={mail} onChange={e => setMail(e.target.value)}/>
+                </div>
+                <div>
+                    <input className="input-area" placeholder='password' type="password" value={password} onChange={e=>setPassword(e.target.value)}/>
+                </div>
+                <div>
+                    <textarea className="input-area" placeholder='detail' value={detail} onChange={e=>setDetail(e.target.value)}/>
+                </div>
+                <div>
+                    <button onClick={onClickRegistCode}>登録</button>
+                </div>
             </div>
             <div>{statusLog}</div>
         </div>

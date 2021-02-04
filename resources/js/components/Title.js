@@ -2,6 +2,8 @@ import React, {useEffect, useState, useContext} from "react";
 import ReactDOM from "react-dom";
 import { Link } from "react-router-dom";
 import {postServer} from "./Utils/Connection";
+import Loading from "./Utils/Loading";
+import './../../css/title.css'
 
 /**
  * タイトル画面
@@ -9,6 +11,7 @@ import {postServer} from "./Utils/Connection";
 function Title(props){
     const [password, setPassword] = useState('');
     const [statusLog, setStatusLog] = useState('');
+    const [isLoading, setIsLoading] = useState(false);
 
     /**
      * ログイン
@@ -30,16 +33,25 @@ function Title(props){
             }
         },(error)=>{
             console.log(error);
-        })
+        },
+            setIsLoading)
     }
 
     return (
         <div className="container">
+            <Loading isLoading={isLoading} />
             <h1>PassManager</h1>
-            <Link to="/Home">Home</Link>
-            <div>
-                <input placeholder='password' value={password} onChange={e=>setPassword(e.target.value)}/>
-                <button onClick={onClickLogin}>login</button>
+            {/*<Link to="/Home">Home</Link>*/}
+            <div id="login-form">
+                <div>
+                    <p id="login-title">LOGIN</p>
+                </div>
+                <div>
+                <input id="password-form" type="password" placeholder='password' value={password} onChange={e=>setPassword(e.target.value)}/>
+                </div>
+                <div>
+                <button id="login-button" onClick={onClickLogin}>login</button>
+                </div>
             </div>
             <div>
                 <p>{statusLog}</p>
