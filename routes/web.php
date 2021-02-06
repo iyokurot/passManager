@@ -26,6 +26,13 @@ const AUTH_API_LIST = [
     'code/regist'                   => 'CodeController@registCode',
     'code/update'                   => 'CodeController@update',
 ];
+
+const AUTH_VIEW_LIST = [
+//    '/'                             => true,
+//    '/Title'                        => true,
+    '/Home'                         => true,
+    '/Regist'                       => true,
+];
 //
 //Route::middleware('auth:api')->get('/user', function (Request $request) {
 //    return $request->user();
@@ -45,20 +52,27 @@ foreach (NO_AUTH_API_LIST as $path => $method) {
 }
 
 foreach (AUTH_API_LIST as $path => $method) {
-    Route::post($path, ['uses' => $method, 'middleware' => ['requestLog', 'sessionAuth']]);
-    Route::get($path, ['uses' => $method, 'middleware' => ['requestLog', 'sessionAuth']]);
+    Route::post($path, ['uses' => $method, 'middleware' => ['requestLog','iplimit', 'sessionAuth']]);
+    Route::get($path, ['uses' => $method, 'middleware' => ['requestLog','iplimit', 'sessionAuth']]);
 }
 
 /**
  * ひとまずすべてのアクセスをトップページに飛ばす
  * あとで指定パスのみへ変更
  */
+foreach (AUTH_VIEW_LIST as $path => $b) {
+    Route::get($path, function () {
+        return view('welcome');
+    })->middleware('requestLog','iplimit','sessionAuth');
+}
 Route::get('/', function () {
     return view('welcome');
+})->middleware('requestLog','iplimit');
+Route::get('/notfound', function () {
+    return view('notfound');
 });
 Route::get('/{any}', function () {
-    return view('welcome');
-})->where('any', '.*')
-->middleware('iplimit','sessionAuth');
+    return view('notfound');
+})->where('any', '.*');
 
 

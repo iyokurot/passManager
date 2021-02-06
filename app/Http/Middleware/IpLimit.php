@@ -19,10 +19,6 @@ class IpLimit
      */
     public function handle($request, Closure $next)
     {
-        $config = \Config::get('ipLimit');
-        foreach ($config['allowIps'] as $allowIp) {
-            //Log::debug($allowIp);
-        }
-        return $next($request);
+            return $next($request);
     }
 }
