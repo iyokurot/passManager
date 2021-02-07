@@ -93,12 +93,12 @@ class CodeController extends Controller
             // codeテーブルレコード全削除(CSVが読み込めてから)
             $deleteResult   = ModelCode::deleteAll();
             $codeList       = [];
+            Log::info($headerArray);
             foreach ($body as $defRow) {
                 $row = str_replace("\r\n", '', $defRow);
                 $rowArray       = explode(',', $row);
                 $structureRows  = [];
                 foreach ($headerArray as $index => $headerName) {
-                    $headerName = str_replace("\r\n", '', $headerName);
                     $structureRows[$headerName] = $rowArray[$index] ?? '';
                 }
                 $codeList[] = $structureRows;
@@ -106,7 +106,9 @@ class CodeController extends Controller
             $resultFailureList = [];
             Log::info($codeList);
             foreach ($codeList as $code) {
-                $isClear = ModelCode::registCode($code['service_name'], $code['id_name'], $code['password'], $code['mail'], $code['detail']);
+                $isClear = ModelCode::registCode($code['service_name'], $code['id_name'], $code['password'], $code['mail'], '');
+                    //$code['detail']);
+                // ^ 原因不明改行エラーにより除外
                 if (!$isClear) {
                     $resultFailureList[] = $code;
                 }
