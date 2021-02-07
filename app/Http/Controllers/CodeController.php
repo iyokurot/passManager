@@ -89,12 +89,12 @@ class CodeController extends Controller
             $csv            = file(resource_path('password.csv'));
             $header         = str_replace("\r\n", '', $csv[0]);
             $headerArray    = explode(',', $header);
-            Log::info($headerArray);
             $body           = array_splice($csv, 1);
             // codeテーブルレコード全削除(CSVが読み込めてから)
             $deleteResult   = ModelCode::deleteAll();
             $codeList       = [];
-            foreach ($body as $row) {
+            foreach ($body as $defRow) {
+                $row = str_replace("\r\n", '', $defRow);
                 $rowArray       = explode(',', $row);
                 $structureRows  = [];
                 foreach ($headerArray as $index => $headerName) {
@@ -103,7 +103,6 @@ class CodeController extends Controller
                 $codeList[] = $structureRows;
             }
             $resultFailureList = [];
-            Log::info($codeList);
             foreach ($codeList as $code) {
                 $isClear = ModelCode::registCode($code['service_name'], $code['id_name'], $code['password'], $code['mail'], $code['detail']);
                 if (!$isClear) {
