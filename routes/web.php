@@ -25,6 +25,7 @@ const AUTH_API_LIST = [
     'code/getall'                   => 'CodeController@getAllCode',
     'code/regist'                   => 'CodeController@registCode',
     'code/update'                   => 'CodeController@update',
+    'code/reset'                    => 'CodeController@reset',
 ];
 
 const AUTH_VIEW_LIST = [
@@ -33,18 +34,6 @@ const AUTH_VIEW_LIST = [
     '/Home'                         => true,
     '/Regist'                       => true,
 ];
-//
-//Route::middleware('auth:api')->get('/user', function (Request $request) {
-//    return $request->user();
-//});
-
-// Route::post('login', ['uses' => 'AuthController@login']);
-
-// Route::post('code/regist', ['uses' => 'CodeController@registCode']);
-
-// Route::get('code/getall', ['uses' => 'CodeController@getAllCode', 'middleware' => 'iplimit']);
-
-// Route::post('code/get', ['uses' => 'CodeController@getCode']);
 
 foreach (NO_AUTH_API_LIST as $path => $method) {
     Route::post($path, ['uses' => $method, 'middleware' => ['requestLog']]);
@@ -57,8 +46,7 @@ foreach (AUTH_API_LIST as $path => $method) {
 }
 
 /**
- * ひとまずすべてのアクセスをトップページに飛ばす
- * あとで指定パスのみへ変更
+ * 認証済みページ
  */
 foreach (AUTH_VIEW_LIST as $path => $b) {
     Route::get($path, function () {
@@ -68,6 +56,10 @@ foreach (AUTH_VIEW_LIST as $path => $b) {
 Route::get('/', function () {
     return view('welcome');
 })->middleware('requestLog','iplimit');
+
+/**
+ * リダイレクトNotFound
+ */
 Route::get('/notfound', function () {
     return view('notfound');
 });

@@ -25,12 +25,8 @@ class IpLimitMiddleware
         if(!in_array($ip,$config['allowIps'] )){
             Log::info('redirect not found');
             return redirect('/notfound');
-            //response()->make(view('notfound'),404);
         }else{
             return $next($request);
         }
-//        foreach ($config['allowIps'] as $allowIp) {
-//            Log::debug($allowIp);
-//        }
     }
 }

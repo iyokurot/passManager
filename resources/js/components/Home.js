@@ -143,15 +143,11 @@ function Home(props) {
             </div>
             {isOpenModal ?
                 <div className="regist-area" id="detail-area">
-                    {/*<div>{selectCode.service_name}</div>*/}
-                    {/*<div>{selectCode.id_name}</div>*/}
-                    {/*<div>{selectCode.mail}</div>*/}
-                    {/*<div>{selectCode.password}</div>*/}
-                    <div className="input-area"><input placeholder='サービス名' value={selectCode.service_name} onChange={e => onChangeCode('service_name',e.target.value)}/></div>
-                    <div className="input-area"><input placeholder='ID' value={selectCode.id_name} onChange={e => onChangeCode('id_name',e.target.value)}/></div>
-                    <div className="input-area"><input placeholder='mail' value={selectCode.mail} onChange={e => onChangeCode('mail',e.target.value)}/></div>
-                    <div className="input-area"><input placeholder='password' value={selectCode.password} onChange={e => onChangeCode('password',e.target.value)}/></div>
-                    <div className="input-area"><textarea placeholder='detail' value={selectCode.detail} onChange={e => onChangeCode('detail',e.target.value)}/></div>
+                    <div className="input-area"><p className="input-title">サービス名</p><input placeholder='サービス名' value={selectCode.service_name} onChange={e => onChangeCode('service_name',e.target.value)}/></div>
+                    <div className="input-area"><p className="input-title">ID</p><input placeholder='ID' value={selectCode.id_name} onChange={e => onChangeCode('id_name',e.target.value)}/></div>
+                    <div className="input-area"><p className="input-title">mail</p><input placeholder='mail' value={selectCode.mail} onChange={e => onChangeCode('mail',e.target.value)}/></div>
+                    <div className="input-area"><p className="input-title">password</p><input placeholder='password' value={selectCode.password} onChange={e => onChangeCode('password',e.target.value)}/></div>
+                    <div className="input-area"><p className="input-title">detail</p><textarea placeholder='detail' value={selectCode.detail} onChange={e => onChangeCode('detail',e.target.value)}/></div>
                     <div>
                         <button onClick={() => closeOrSaveModal(false)}>閉じる</button>
                         <button onClick={() => closeOrSaveModal(true)}>保存</button>

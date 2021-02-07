@@ -6416,7 +6416,7 @@ exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader
 
 
 // module
-exports.push([module.i, "button{\n    min-width: 80px;\n    font-size: 18px;\n    margin: 2px;\n}\n\n#table-area{\n    display: inline-block;\n    text-align: center;\n    box-shadow: 0px 0px 15px rgba(0,0,0,0.4);\n    margin: 20px 0px;\n    padding: 5px;\n}\n\n#detail-area{\n    position: absolute;\n    top: 30%;\n    left: 50%;\n    margin-right: -50%;\n    transform: translate(-50%, -50%);\n    box-shadow: 0px 0px 25px rgba(0,0,0,0.4);\n    background-color: white;\n}\n", ""]);
+exports.push([module.i, "button{\n    min-width: 80px;\n    font-size: 18px;\n    margin: 2px;\n}\n\n#table-area{\n    display: inline-block;\n    text-align: center;\n    box-shadow: 0px 0px 15px rgba(0,0,0,0.4);\n    margin: 20px 0px;\n    padding: 5px;\n}\n\n#detail-area{\n    position: absolute;\n    top: 30%;\n    left: 50%;\n    margin-right: -50%;\n    transform: translate(-50%, -50%);\n    box-shadow: 0px 0px 25px rgba(0,0,0,0.4);\n    background-color: white;\n}\n\n.input-title{\n    padding: 0;\n    margin: 0;\n}\n", ""]);
 
 // exports
 
@@ -70824,7 +70824,9 @@ function Home(props) {
     id: "detail-area"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "input-title"
+  }, "\u30B5\u30FC\u30D3\u30B9\u540D"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     placeholder: "\u30B5\u30FC\u30D3\u30B9\u540D",
     value: selectCode.service_name,
     onChange: function onChange(e) {
@@ -70832,7 +70834,9 @@ function Home(props) {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "input-title"
+  }, "ID"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     placeholder: "ID",
     value: selectCode.id_name,
     onChange: function onChange(e) {
@@ -70840,7 +70844,9 @@ function Home(props) {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "input-title"
+  }, "mail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     placeholder: "mail",
     value: selectCode.mail,
     onChange: function onChange(e) {
@@ -70848,7 +70854,9 @@ function Home(props) {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "input-title"
+  }, "password"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
     placeholder: "password",
     value: selectCode.password,
     onChange: function onChange(e) {
@@ -70856,7 +70864,9 @@ function Home(props) {
     }
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "input-area"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "input-title"
+  }, "detail"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("textarea", {
     placeholder: "detail",
     value: selectCode.detail,
     onChange: function onChange(e) {

@@ -112,4 +112,13 @@ class ModelCode
             ErrorLog::catchException($e);
         }
     }
+
+    public static function deleteAll()
+    {
+        $sql = 'DELETE FROM u_codes';
+        $query = [];
+        $database = new ModelDatabase();
+        $result = $database->select($sql, $query);
+        return $result ?? [];
+    }
 }

@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Support\Facades\Log;
 
 class SessionAuth
 {
@@ -22,7 +21,6 @@ class SessionAuth
             return redirect('/');
         }
         $userID = $request->session()->get('user_id','');
-        Log::info('login_user:'.$userID);
         return $next($request);
     }
 }
