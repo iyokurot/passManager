@@ -98,6 +98,7 @@ class CodeController extends Controller
                 $rowArray       = explode(',', $row);
                 $structureRows  = [];
                 foreach ($headerArray as $index => $headerName) {
+                    $headerName = str_replace("\r\n", '', $headerName);
                     $structureRows[$headerName] = $rowArray[$index] ?? '';
                 }
                 $codeList[] = $structureRows;
