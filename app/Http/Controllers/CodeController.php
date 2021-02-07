@@ -103,6 +103,7 @@ class CodeController extends Controller
                 $codeList[] = $structureRows;
             }
             $resultFailureList = [];
+            Log::info($codeList);
             foreach ($codeList as $code) {
                 $isClear = ModelCode::registCode($code['service_name'], $code['id_name'], $code['password'], $code['mail'], $code['detail']);
                 if (!$isClear) {
