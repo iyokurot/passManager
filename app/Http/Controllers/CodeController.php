@@ -87,7 +87,7 @@ class CodeController extends Controller
             // CSVから読み込み
             $response       = [];
             $csv            = file(resource_path('password.csv'));
-            $header         = str_replace("\r\n", '', $csv[0]);
+            $header         = str_replace(array("\r\n", "\r", "\n"), '', $csv[0]);
             $headerArray    = explode(',', $header);
             $body           = array_splice($csv, 1);
             // codeテーブルレコード全削除(CSVが読み込めてから)
