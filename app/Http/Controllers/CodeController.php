@@ -95,7 +95,7 @@ class CodeController extends Controller
             $codeList       = [];
             Log::info($headerArray);
             foreach ($body as $defRow) {
-                $row = str_replace("\r\n", '', $defRow);
+                $row = str_replace(array("\r\n", "\r", "\n"), '', $defRow);
                 $rowArray       = explode(',', $row);
                 $structureRows  = [];
                 foreach ($headerArray as $index => $headerName) {
@@ -106,7 +106,7 @@ class CodeController extends Controller
             $resultFailureList = [];
             Log::info($codeList);
             foreach ($codeList as $code) {
-                $isClear = ModelCode::registCode($code['service_name'], $code['id_name'], $code['password'], $code['mail'], '');
+                $isClear = ModelCode::registCode($code['service_name'], $code['id_name'], $code['password'], $code['mail'], $code['detail']);
                     //$code['detail']);
                 // ^ 原因不明改行エラーにより除外
                 if (!$isClear) {
